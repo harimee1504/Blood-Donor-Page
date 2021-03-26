@@ -1,0 +1,4 @@
+Flask==1.1.2
+flask_sqlalchemy==2.5.1
+python_dateutil==2.8.1
+SQLAlchemy==1.4.3

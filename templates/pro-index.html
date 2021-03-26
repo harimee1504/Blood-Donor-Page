@@ -1,0 +1,133 @@
+{% extends "layout1.html" %}
+{% block style %}
+body
+{
+ margin:0px auto;
+ padding:0px;
+ text-align:center;
+ width:100%;
+ font-family: "Myriad Pro","Helvetica Neue",Helvetica,Arial,Sans-Serif;
+ background-image: linear-gradient(135deg, rgba(244, 244, 244,0.07) 0%, rgba(244, 244, 244,0.07) 12.5%,rgba(211, 211, 211,0.07) 12.5%, rgba(211, 211, 211,0.07) 25%,rgba(178, 178, 178,0.07) 25%, rgba(178, 178, 178,0.07) 37.5%,rgba(145, 145, 145,0.07) 37.5%, rgba(145, 145, 145,0.07) 50%,rgba(113, 113, 113,0.07) 50%, rgba(113, 113, 113,0.07) 62.5%,rgba(80, 80, 80,0.07) 62.5%, rgba(80, 80, 80,0.07) 75%,rgba(47, 47, 47,0.07) 75%, rgba(47, 47, 47,0.07) 87.5%,rgba(14, 14, 14,0.07) 87.5%, rgba(14, 14, 14,0.07) 100%),linear-gradient(45deg, rgba(236, 236, 236,0.07) 0%, rgba(236, 236, 236,0.07) 12.5%,rgba(210, 210, 210,0.07) 12.5%, rgba(210, 210, 210,0.07) 25%,rgba(183, 183, 183,0.07) 25%, rgba(183, 183, 183,0.07) 37.5%,rgba(157, 157, 157,0.07) 37.5%, rgba(157, 157, 157,0.07) 50%,rgba(130, 130, 130,0.07) 50%, rgba(130, 130, 130,0.07) 62.5%,rgba(104, 104, 104,0.07) 62.5%, rgba(104, 104, 104,0.07) 75%,rgba(77, 77, 77,0.07) 75%, rgba(77, 77, 77,0.07) 87.5%,rgba(51, 51, 51,0.07) 87.5%, rgba(51, 51, 51,0.07) 100%),linear-gradient(90deg, #ffffff,#ffffff);
+}
+
+h1{
+    background-color: black;
+    color: aliceblue;
+    height: 90px;
+    font-size:50px;
+    margin-top: -8px;
+    padding-top: 30px;
+}
+.bttn {
+  border: 2px solid #fff;
+  padding: 10px 30px;
+  color: #fff;
+  background-color:#3498db ;
+  cursor: pointer;
+  transition: all 0.5s ease;
+  text-decoration: none;
+}
+.bttn::after {
+  border: 2px solid #fff;
+  padding: 10px 20px;
+  color: #fff;
+  background-color:#3498db ;
+  cursor: pointer;
+  transition: all 0.5s ease;
+}
+.bttn:hover{
+  background: #fff;
+  color: #3498db;
+  border: solid  1px #000;
+}
+h2
+{
+  font-size:30px;
+  }
+p
+{
+    padding-top: 10px;
+    padding-bottom: 20px;
+    font-size: 20px;
+}
+.container
+{
+  margin-top:70px;
+  width:90%;
+  height:300px;
+  margin-left:5%;
+  padding:20px;
+  box-sizing:border-box;
+  background-color:#95cade;
+  border-radius:20px;
+}
+
+.btn-v {
+  background-color: #4ca80a;
+  color: black;
+  padding: 5px 22px;
+  font-size: 16px;
+  margin: 0 20px;
+  text-decoration: none;
+  border-radius:3px;
+}
+
+.btn-v:hover {
+  background-color: #3e8e41;
+  color: white;
+}
+
+.btn-e{
+  background-color: #1caafc;
+  color: black;
+  padding: 5px 22px;
+  font-size: 16px;
+  margin: 18px 20px;
+  text-decoration: none;
+  border-radius:3px;
+}
+.btn-e:hover {
+  background-color: #0280c9;
+  color: white;
+}
+.btn-d{
+  background-color: #ff030f;
+  color: black;
+  padding: 5px 22px;
+  font-size: 16px;
+  margin: 18px 20px;
+  text-decoration: none;
+  border-radius:3px;
+}
+.btn-d:hover {
+  background-color: #d1040e;
+  color: white;
+}
+
+@media (max-width: 700px){
+p{
+    padding-top: 6px;
+    font-size: 20px;
+}
+}
+
+
+{% endblock %}
+
+{% block body %}
+    <h1>Project Listing</h1>
+    <div class="form-title">
+    </div>
+    <a href="/pro" class="bttn">Home</a>
+    <a href="/proadd" class="bttn">Add new project</a>
+    <a href="/delall" class="bttn">Delete All</a>
+    {% for i in range(n) %}
+        <div class="container">
+            <h2>{{ t[i]['name'] }}</h2>
+            <p>{{ t[i]['des'] }}</p>
+            <a href="{{ t[i]['url']}}" class="btn-v" target="_blank">VISIT</a>
+            <a href="/edit/{{t[i]['name']}}/{{t[i]['des']}}/{{t[i]['url']}}/{{t[i]['phn']}}/{{t[i]['cphn']}}" class="btn-e">Edit</a>
+            <a href="/delete/{{t[i]['name']}}/{{t[i]['des']}}" class="btn-d">Delete</a>
+        </div>
+    {% endfor %}
+{% endblock %}

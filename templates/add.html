@@ -1,0 +1,201 @@
+{% extends "layout.html" %}
+{% block style %}
+* {
+          box-sizing: border-box;
+          background-image: repeating-linear-gradient(45deg, rgb(255,255,255) 0px, rgb(255,255,255) 10px,transparent 10px, transparent 11px),repeating-linear-gradient(135deg, rgb(255,255,255) 0px, rgb(255,255,255) 10px,transparent 10px, transparent 11px),linear-gradient(90deg, hsl(256,7%,84%),hsl(256,7%,84%));
+        }
+        h2,p{
+            text-align:center;
+        }
+        input[type=date],input[type=text],input[type=URL],input[type=tel], select, textarea {
+          width: 60%;
+          padding: 12px;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          resize: vertical;
+        }
+
+        label {
+          padding: 12px 12px 12px 0;
+          display: inline-block;
+        }
+input[type="date"]:disabled {
+  background: #dddddd;
+}
+        input[type=submit] {
+        display: inline-block;
+        border-radius: 10px;
+        border: 4px double #cccccc;
+        color: #000;
+        text-align: center;
+        font-size: 20px;
+        padding: 10px;
+        width: 200px;
+        -webkit-transition: all 0.5s;
+        -moz-transition: all 0.5s;
+        -o-transition: all 0.5s;
+        transition: all 0.5s;
+        cursor: pointer;
+        margin: 5px;
+
+        }
+
+        input[type=submit]:hover {
+            color:#000;
+            background-color:#fff;
+        }
+
+
+
+        .col-25 {
+          float: left;
+          width: 25%;
+          margin-top: 6px;
+        }
+
+        .col-75 {
+          float: left;
+          width: 75%;
+          margin-top: 6px;
+        }
+
+        /* Clear floats after the columns */
+        .row:after {
+          content: "";
+          display: table;
+          clear: both;
+        }
+
+        @media screen and (max-width: 600px) {
+          .col-25, .col-75, input[type=submit] {
+            width: 100%;
+            margin-top: 0;
+          }
+        }
+{% endblock %}
+
+{% block body %}
+<h2>Add Details</h2>
+<br>
+<div class="container">
+  <form action="/add" method="post">
+    <div class="row">
+      <div class="col-25">
+        <label for="fname">First Name:</label>
+      </div>
+      <div class="col-75">
+        <input type="text" placeholder="Enter Your First Name" name="fname" maxlength = "100" required>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="lname">Last Name:</label>
+      </div>
+      <div class="col-75">
+        <input type="text" placeholder="Enter Your Last Name" name="lname" maxlength = "100" required>
+      </div>
+    </div>
+    <div class="row">
+        <div class="col-25">
+          <label for="Blood Group">Blood Group:</label>
+        </div>
+        <div class="col-75">
+          <input type="radio" name="group" value="apositive" required>
+          <label for="radio-inline">A positive - A<sup>+VE</sup></label>
+          <input type="radio"  name="group" value="bpositive">
+          <label for="radio-inline">B positive - B<sup>+VE</sup></label>
+          <input type="radio"  name="group" value="opositive">
+          <label for="radio-inline">O positive - O<sup>+VE</sup></label>
+          <input type="radio"  name="group" value="abpositive">
+          <label for="radio-inline">AB positive - AB<sup>+VE</sup></label><br>
+          <input type="radio"  name="group" value="anegative">
+          <label for="radio-inline">A negative - A<sup>-VE</sup></label>
+          <input type="radio"  name="group" value="bnegative">
+          <label for="radio-inline">B negative - B<sup>-VE</sup></label>
+          <input type="radio"  name="group" value="onegative">
+          <label for="radio-inline">O negative - O<sup>-VE</sup></label>
+          <input type="radio"  name="group" value="abnegative">
+          <label for="radio-inline">AB negative - AB<sup>-VE</sup></label>
+        </div>
+      </div>
+    <div class="row">
+      <div class="col-25">
+         <label for="address">Address:</label>
+      </div>
+      <div class="col-75">
+      <input type="text" name="area" placeholder="Street or Area">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+         <label for="address"></label>
+      </div>
+      <div class="col-75">
+        <input type="text" name="city" placeholder="City">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+         <label for="address"></label>
+      </div>
+      <div class="col-75">
+        <input type="text" name="state" placeholder="State">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+         <label for="address"></label>
+      </div>
+      <div class="col-75">
+        <input type="text" name="country" placeholder="Country">
+      </div>
+    </div>
+     <div class="row">
+      <div class="col-25">
+          <label for="dob">Date of Birth:</label><br>
+      </div>
+      <div class="col-75">
+        <input type="date" name="dob" required>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="lname">Phone Number:</label>
+      </div>
+      <div class="col-75">
+        <input type="tel" placeholder="Phone number" name="phone" required>
+      </div>
+    </div>
+        <div class="row">
+      <div class="col-25">
+        <label for="lname">E-Mail:</label>
+      </div>
+      <div class="col-75">
+        <input type="tel" placeholder="Enter your E-Mail" name="email" required>
+      </div>
+    </div>
+     <div class="row">
+      <div class="col-25">
+          <label for="dob">First Time Donor ?</label><br>
+      </div>
+      <div class="col-75">
+          <input type="radio"  name="first" value="yes">
+          <label for="radio-inline">Yes</label>
+          <input type="radio"  name="first" class="agree" value="no">
+          <label for="radio-inline">No</label>
+      </div><br>
+    </div>
+    <div class="row">
+      <div class="col-25">
+          <label for="dob">Last Blood Donated:</label><br>
+      </div>
+      <div class="col-75">
+        <input type="date" name="LastDonate" class=abc required>
+      </div><br>
+    </div><br>
+    <div class="row">
+      <input type="submit" value="Submit">
+    </div>
+  </form>
+</div>
+{% endblock %}

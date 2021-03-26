@@ -1,0 +1,127 @@
+{% extends "layout.html" %}
+{% block style %}
+* {
+          box-sizing: border-box;
+          background-image: repeating-linear-gradient(45deg, rgb(255,255,255) 0px, rgb(255,255,255) 10px,transparent 10px, transparent 11px),repeating-linear-gradient(135deg, rgb(255,255,255) 0px, rgb(255,255,255) 10px,transparent 10px, transparent 11px),linear-gradient(90deg, hsl(256,7%,84%),hsl(256,7%,84%));
+        }
+        h2,p{
+            text-align:center;
+        }
+        input[type=text],input[type=URL],input[type=tel], select, textarea {
+          width: 100%;
+          padding: 12px;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          resize: vertical;
+        }
+
+        label {
+          padding: 12px 12px 12px 0;
+          display: inline-block;
+        }
+
+        input[type=submit] {
+        display: inline-block;
+        border-radius: 10px;
+        border: 4px double #cccccc;
+        color: #000;
+        text-align: center;
+        font-size: 20px;
+        padding: 10px;
+        width: 200px;
+        -webkit-transition: all 0.5s;
+        -moz-transition: all 0.5s;
+        -o-transition: all 0.5s;
+        transition: all 0.5s;
+        cursor: pointer;
+        margin: 5px;
+
+        }
+
+        input[type=submit]:hover {
+            color:#000;
+            background-color:#fff;
+        }
+
+
+
+        .col-25 {
+          float: left;
+          width: 25%;
+          margin-top: 6px;
+        }
+
+        .col-75 {
+          float: left;
+          width: 75%;
+          margin-top: 6px;
+        }
+
+        /* Clear floats after the columns */
+        .row:after {
+          content: "";
+          display: table;
+          clear: both;
+        }{{name}}/{{des}}/{{url}}/{{phn}}
+
+        @media screen and (max-width: 600px) {
+          .col-25, .col-75, input[type=submit] {
+            width: 100%;
+            margin-top: 0;
+          }
+        }
+{% endblock %}
+
+{% block body %}
+  <h2>EDIT PROJECT</h2>
+<p>Here you can edit your project title , description and URL for your project.</p>
+<br><br>
+<div class="container">
+  <form action="/edit/{{name}}/{{des}}/{{url}}/{{phn}}/{{cphn}}" method="POST">
+    <div class="row">
+      <div class="col-25">
+        <label for="fname">Title of the Project</label>
+      </div>
+      <div class="col-75">
+        <input type="text" value="{{name}}" name="name-edit" required>
+      </div>
+    </div>
+    <div class="row">
+        <div class="col-25">
+          <label for="subject">Description of the Project</label>
+        </div>
+        <div class="col-75">
+          <textarea id="subject" name="des-edit"  maxlength = "500" required style="height:200px">{{des}}</textarea>
+        </div>
+      </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="lname">URL for the project</label>
+      </div>
+      <div class="col-75">
+        <input type="url" value="{{url}}" name="url-edit" required>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="lname">Phone number(password)</label>
+      </div>
+      <div class="col-75">
+        <input type="tel" value="{{phn}}" name="phn-edit" required>
+      </div>
+    </div>
+        <div class="row">
+      <div class="col-25">
+        <label for="lname">Confirm Phone number(password)</label>
+      </div>
+      <div class="col-75">
+        <input type="tel" value="{{cphn}}" name="cphn-edit" required>
+      </div>
+    </div>
+    <br><br>
+    <div class="row">
+      <input type="submit" value="Update">
+    </div>
+  </form>
+</div>
+{% endblock %}

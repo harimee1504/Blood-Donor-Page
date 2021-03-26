@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donate Blood</title>
+    <link rel="icon" href="./static/images/s1.png" type="image/icon"/>
+<style>
+*{
+    margin: 0;
+    padding:0;
+    box-sizing: border-box;
+}
+.container {
+    display: grid;
+    grid-template-areas:
+    'header header header header header'
+    'pic no no no no'
+    'pic bg1 bg2 bg3 bg4'
+    'pic bg5 bg6 bg7 bg8'
+    'pic footer footer footer footer';
+    grid-template-columns: 32vw 17vw 17vw 17vw 17vw;
+    grid-template-rows: 10vh 2vh 40vh 40vh 8vh;
+
+}
+nav{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    min-height: 10vh;
+    background-color: #282828;
+}
+nav > .image{
+     margin-top: 4px;
+    margin-left: 30px;
+    width: 64px;
+    height: 64px;
+}
+nav>form{
+    right:0;
+    margin:0px 2vw;
+    padding:1vw;
+}
+nav >form >button{
+    margin-left:1vw;
+    border-radius:10px;
+    padding: 5px 25px;
+    background:red;
+    color:white;
+}
+nav >form >button:hover{
+    background:blue;
+}
+nav >form >input[type='text']{
+    border-radius:10px;
+    padding: 5px 30px;
+}
+nav>h1{
+    color: whitesmoke;
+    font-size: 45px;
+    font-weight: 800;
+    margin-left:20vw;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+}
+.container > div.item2 {
+  background-color: rgb(184, 0, 19);
+  padding: 20px 0;
+  font-size: 30px;
+}
+.container > div.item2 >img{
+    object-fit: cover;
+    width: 80%;
+    max-height: 100%;
+    margin-right: 3vw;
+    margin-top:-2.5vh;
+}
+.container > .item2 > h4{
+    color:whitesmoke;
+    margin-bottom:4vh;
+    margin-left:4vw;
+}
+
+.container > div.item2 > a{
+  background: #7a0f15;
+  text-decoration: none;
+  color: whitesmoke;
+  margin-left:5vw;
+  font-size: 30px;
+  border: solid;
+  border-radius:10px;
+  padding: 5px 25px;
+  border-color: crimson;
+}
+.container > div.item2 > a:hover{
+      border-color: white;
+}
+.container > div > form >button > img{
+    width: 14vw;
+  height: 27vh;
+  float: right;
+}
+form > button{
+    position: relative;
+}
+form > button >h3{
+    padding: 5px;
+    bottom: 0;
+}
+footer{
+    display: inline-flex;
+    align-items: center;
+    background-color: #282828;
+}
+footer >h2>span{
+    margin-left: 7vw;
+}
+nav>.new{
+    position: absolute;
+right: 0;
+top: 0;
+    min-height: 10vh;
+}
+footer>h2{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color: blanchedalmond;
+}
+form{
+    margin-left: 30px;
+}
+form:hover{
+    transform:scale(1.03);
+}
+form > select{
+    padding :5px 15px;
+     border-radius:10px;
+}
+.item1 { grid-area: header;}
+.item2 { grid-area: pic;}
+.item3 { grid-area: bg1; }
+.item4 { grid-area: bg2; }
+.item5 { grid-area: bg3; }
+.item6 { overflow-y: hidden; /* Hide vertical scrollbar */
+  overflow-x: hidden;
+  grid-area: bg4; }
+.item7 { grid-area: bg5; }
+.item8 { grid-area: bg6; }
+.item9 { grid-area: bg7; }
+.item10 {  overflow-y: hidden; /* Hide vertical scrollbar */
+  overflow-x: hidden;grid-area: bg8; }
+.item11{ grid-area: footer;}
+</style>
+</head>
+<body>
+<div class="container">
+    <nav class="item1"><img class="image" src="../static/images/logo (2).png" alt="Logo"><h1>Save Life Give Blood</h1>
+        <form action='/search' method="post">
+            <select name='city'>
+            <option SELECTED>Select City
+            {% for i in cities %}
+            <option value= {{i}}>
+                {{i}}
+            </option>
+            {% endfor %}
+            </select>
+             <select name='groups'>
+                 <option SELECTED>Select Group
+            {% for i in groups %}
+            <option value= "{{i}}">
+                {{i}}
+            </option>
+            {% endfor %}
+            </select>
+            <button value="submit">Search</button>
+        </form>
+    </nav>
+    <div class="item2"><img src="../static/images/blood-1.png" alt=""><h4>Want to be a Donor ?</h4><a href="/add" target="_blank">Register Here</a></div>
+    <div class='item3'><form action='/apositive'><button type="submit"><img src="../static/images/apositive.png" alt="A +ve" width="240" height="296"><h3>Overall:{{total[0]}}</h3> <h3>Suitable: {{active[0]}}</h3> <h3>Unsuitable: {{inactive[0]}}</h3></button></form></div>
+    <div class='item4'><form action='/anegative'><button type="submit"><img src="../static/images/anegative.png" alt="A -ve" width="240" height="296"><h3>Overall:{{total[1]}}</h3> <h3>Suitable: {{active[1]}}</h3> <h3>Unsuitable: {{inactive[1]}}</h3></button></form></div>
+    <div class='item5'><form action='/bpositive'><button type="submit"><img src="../static/images/bpositive.png" alt="B +ve" width="240" height="296"><h3>Overall:{{total[2]}}</h3> <h3>Suitable: {{active[2]}}</h3> <h3>Unsuitable: {{inactive[2]}}</h3></button></form></div>
+    <div class='item6'><form action='/bnegative'><button type="submit"><img src="../static/images/bnegative.png" alt="B -ve" width="240" height="296"><h3>Overall:{{total[3]}}</h3> <h3>Suitable: {{active[3]}}</h3> <h3>Unsuitable: {{inactive[3]}}</h3></button></form></div>
+    <div class='item7'><form action='/abpositive'><button type="submit"><img src="../static/images/abpositive.png" alt="AB +ve" width="240" height="296"><h3>Overall:{{total[4]}}</h3> <h3>Suitable: {{active[4]}}</h3> <h3>Unsuitablee: {{inactive[4]}}</h3></button></form></div>
+    <div class='item8'><form action='/abnegative'><button type="submit"><img src="../static/images/abnegative.png" alt="AB -ve" width="240" height="296"><h3>Overall:{{total[5]}}</h3> <h3>Suitable: {{active[5]}}</h3> <h3>Unsuitable: {{inactive[5]}}</h3></button></form></div>
+    <div class='item9'><form action='/opositive'><button type="submit"><img src="../static/images/opositive.png" alt="O +ve" width="240" height="296"><h3>Overall:{{total[6]}}</h3> <h3>Suitable: {{active[6]}}</h3> <h3>Unsuitable: {{inactive[6]}}</h3></button></form></div>
+    <div class='item10'><form action='/onegative'><button type="submit"><img src="../static/images/onegative.png" alt="O -ve" width="240" height="296"><h3>Overall:{{total[7]}}</h3> <h3>Suitable: {{active[7]}}</h3> <h3>Unsuitable: {{inactive[7]}}</h3></button></form></div>
+    <footer class="item11"><h2><span> Total Donors: {{td}}</span> <span> Suitable Donors: {{ad}} </span> <span>Unsuitable Donors: {{id1}}</span> </h2></footer>
+</div>
+</body>
+</html>

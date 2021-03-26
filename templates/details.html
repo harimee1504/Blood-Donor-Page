@@ -1,0 +1,125 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donate Blood</title>
+    <link rel="icon" href="./static/images/s1.png" type="image/icon"/>
+ <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid #999;
+        }
+        th,td{
+              padding: 10px;
+        }
+        td{
+            padding-top:20px;
+            padding-bottom:20px;
+        }
+       tr:nth-child(odd) {
+              background: #ddd;
+        }
+        th {
+              background: #000;
+              color: #fff;
+              padding: 10px;
+              position: sticky;
+              text-align: left;
+              top: 0;
+        }
+       .back,h1{
+         display:flex;
+         justify-content:center;
+       }
+        a{
+          background: #000;
+          text-decoration: none;
+          color: white;
+          margin-top:5vh;
+          font-size: 20px;
+          border: solid;
+          border-radius:10px;
+          padding: 3px 10px;
+          border-color: grey;
+        }
+        .brea{
+            display:flex;
+            justify-content:center;
+        }
+</style>
+</head>
+<h1>Suitable Donors</h1>
+<br>
+<table style="width: 100%;text-align: centre;">
+    <tr>
+        <th style="width:15vw;">Name</th>
+        <th style="width:8vw;">Blood Group</th>
+        <th style="width:8vw;">City</th>
+        <th style="width:8vw;">Date of Birth</th>
+        <th style="width:8vw;">Phone Number</th>
+        <th style="width:auto;">E-mail</th>
+        <th style="width:8vw;">Last Donated On</th>
+        <th style="width:8vw;">Status</th>
+    </tr>
+</table>
+{% for i in range(n) %}
+{% if t[n-i-1]['active']=="active"%}
+<table style="width:100%;">
+    <tr>
+        <td style="width:15vw;">{{t[n-i-1]['fname']}} {{t[n-i-1]['lname']}}</td>
+        <td style="width:8vw;">{{group}}</td>
+        <td style="width:8vw;">{{t[n-i-1]['city']}}</td>
+        <td style="width:8vw;">{{t[n-i-1]['dob'].split('-')[::-1][0]}}-{{t[n-i-1]['dob'].split('-')[::-1][1]}}-{{ t[n-i-1]['dob'].split('-')[::-1][2]}}</td>
+        <td style="width:8vw;">{{t[n-i-1]['phone']}}</td>
+        <td style="width:auto;">{{t[n-i-1]['email']}}</td>
+        <td style="width:8vw;">{{t[n-i-1]['LastDonate'].split('-')[::-1][0]}}-{{t[n-i-1]['LastDonate'].split('-')[::-1][1]}}-{{ t[n-i-1]['LastDonate'].split('-')[::-1][2]}}</td>
+        <td style="width:8vw;">{{t[n-i-1]['active']}}</td>
+    </tr>
+</table>
+{% endif%}
+{% endfor %}
+{% if n==0 %}
+    <h1> No Data Available</h1>
+{% endif%}
+<div class="back"><a href='/blood-index'>Back</a></div>
+<br>
+<br>
+<h1>Unsuitable Donors</h1>
+<br>
+<table style="width: 100%;text-align: centre;">
+    <tr>
+        <th style="width:15vw;">Name</th>
+        <th style="width:8vw;">Blood Group</th>
+        <th style="width:8vw;">City</th>
+        <th style="width:8vw;">Date of Birth</th>
+        <th style="width:8vw;">Phone Number</th>
+        <th style="width:auto;">E-mail</th>
+        <th style="width:8vw;">Last Donated On</th>
+        <th style="width:8vw;">Status</th>
+    </tr>
+</table>
+{% for i in range(n) %}
+{% if t[n-i-1]['active']=="inactive"%}
+<table style="width:100%;">
+    <tr>
+        <td style="width:15vw;">{{t[n-i-1]['fname']}} {{t[n-i-1]['lname']}}</td>
+        <td style="width:8vw;">{{group}}</td>
+        <td style="width:8vw;">{{t[n-i-1]['city']}}</td>
+        <td style="width:8vw;">{{t[n-i-1]['dob'].split('-')[::-1][0]}}-{{t[n-i-1]['dob'].split('-')[::-1][1]}}-{{ t[n-i-1]['dob'].split('-')[::-1][2]}}</td>
+        <td style="width:8vw;">{{t[n-i-1]['phone']}}</td>
+        <td style="width:auto;">{{t[n-i-1]['email']}}</td>
+        <td style="width:8vw;">{{t[n-i-1]['LastDonate'].split('-')[::-1][0]}}-{{t[n-i-1]['LastDonate'].split('-')[::-1][1]}}-{{ t[n-i-1]['LastDonate'].split('-')[::-1][2]}}</td>
+        <td style="width:8vw;">{{t[n-i-1]['active']}}</td>
+    </tr>
+</table>
+{% endif%}
+{% endfor %}
+{% if n==0 %}
+    <h1> No Data Available</h1>
+{% endif%}
+<div class="back"><a href='/blood-index'>Back</a></div>
+</html>
